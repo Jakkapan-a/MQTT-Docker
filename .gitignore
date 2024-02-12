@@ -36,3 +36,6 @@ passwd
 *.pid
 *.db
 *.log
+./src/log
+./src/run
+./src/data
