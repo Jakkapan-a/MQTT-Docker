@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    restart: unless-stopped # always | no | on-failure | unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./src/config:/mosquitto/config
+      - ./src/data:/mosquitto/data
+      - ./src/log:/mosquitto/log
+      - ./src/run:/mosquitto/run
+      - ./src:/mosquitto/passwd # for user authentication
+    networks:
+      - mqtt
+networks:
+  mqtt:
+    driver: bridge
